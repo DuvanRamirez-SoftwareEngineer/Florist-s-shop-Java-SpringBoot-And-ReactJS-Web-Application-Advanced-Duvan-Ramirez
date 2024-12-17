@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventario de Pedidos</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div th:replace="navbar :: nav"></div>
+
+    <div class="max-w-5xl mx-auto mt-16">
+      <h1 class="text-3xl mx-auto text-center font-bold m-4">Inventario de Pedidos</h1>
+      <button
+        id="mostrarFormulario"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 rounded"
+      >
+        Crear Pedido
+      </button>
+
+      <div
+        id="formularioCrearPedido"
+        class="hidden items-center inset-0 fixed flex bg-white bg-opacity-90"
+      >
+        <form
+          class="bg-purple-100 max-w-3xl mx-auto ring-gray-100 p-8 rounded-lg"
+          action="/guardarpedido"
+          method="POST"
+        >
+          <h1 class="text-3xl mx-auto text-center font-bold m-4">Crear Pedido</h1>
+          <div class="mb-4 grid grid-cols-2 gap-4">
+            <div>
+              <label for="nombrecliente" class="block text-gray-700 text-sm font-bold mb-2">Nombre Cliente:</label>
+              <input
+                type="text"
+                id="nombrecliente"
+                name="nombrecliente"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label for="ramo" class="block text-gray-700 text-sm font-bold mb-2">Ramo:</label>
+              <input
+                type="text"
+                id="ramo"
+                name="ramo"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label for="color_ramo" class="block text-gray-700 text-sm font-bold mb-2">Color del Ramo:</label>
+              <input
+                type="text"
+                id="color_ramo"
+                name="color_ramo"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label for="direccion" class="block text-gray-700 text-sm font-bold mb-2">Dirección:</label>
+              <input
+                type="text"
+                id="direccion"
+                name="direccion"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label for="mensaje_compra" class="block text-gray-700 text-sm font-bold mb-2">Mensaje:</label>
+              <input
+                type="text"
+                id="mensaje_compra"
+                name="mensaje_compra"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label for="precio_ramo" class="block text-gray-700 text-sm font-bold mb-2">Precio del Ramo:</label>
+              <input
+                type="number"
+                id="precio_ramo"
+                name="precio_ramo"
+                min="1"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+          </div>
+          <div class="mt-6 text-center">
+            <button
+              type="submit"
+              class="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-900 focus:outline-none focus:ring"
+            >
+              Agregar
+            </button>
+            <button
+              id="ocultarFormulario"
+              type="button"
+              class="bg-white text-gray-800 py-2 px-4 rounded-md border border-purple-500 hover:bg-purple-100 focus:outline-none focus:ring focus:ring-gray-200"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-purple-200">
+            <th class="border border-purple-300">Nombre Cliente</th>
+            <th class="border border-purple-300">Ramo</th>
+            <th class="border border-purple-300">Color del Ramo</th>
+            <th class="border border-purple-300">Dirección</th>
+            <th class="border border-purple-300">Mensaje</th>
+            <th class="border border-purple-300">Precio del Ramo</th>
+            <th class="border border-purple-300">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ejemplo de datos -->
+          <tr th:each="pedido : ${pedidosParaInventario}" class="bg-white">
+            <td th:text="${pedido.nombrecliente}" class="border border-gray-300 py-2 px-4">Juan Perez</td>
+            <td th:text="${pedido.ramo}" class="border border-gray-300 py-2 px-4">Rosas</td>
+            <td th:text="${pedido.color_ramo}" class="border border-gray-300 py-2 px-4">Rojas</td>
+            <td th:text="${pedido.direccion}" class="border border-gray-300 py-2 px-4">Calle 123</td>
+            <td th:text="${pedido.mensaje_compra}" class="border border-gray-300 py-2 px-4">Feliz cumpleaños</td>
+            <td th:text="${pedido.precio_ramo}" class="border border-gray-300 py-2 px-4">$50.00</td>
+            <td class="border border-gray-300 py-2 px-4 flex justify-between">
+              <a th:href="@{/eliminarpedido/{id_pedido}(id_pedido=${pedido.id_pedido})}" class="text-red-600 cursor-pointer">
+                <i class="fas fa-trash"></i>
+              </a>
+              <a th:href="@{/editarpedido/{id_pedido}(id_pedido=${pedido.id_pedido})}" class="text-purple-600 cursor-pointer gap-3">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const mostrarFormularioBtn = document.getElementById("mostrarFormulario");
+      const ocultarFormularioBtn = document.getElementById("ocultarFormulario");
+      const formularioCrearPedido = document.getElementById("formularioCrearPedido");
+
+      mostrarFormularioBtn.addEventListener("click", () => {
+        formularioCrearPedido.classList.remove("hidden");
+      });
+
+      ocultarFormularioBtn.addEventListener("click", () => {
+        formularioCrearPedido.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>

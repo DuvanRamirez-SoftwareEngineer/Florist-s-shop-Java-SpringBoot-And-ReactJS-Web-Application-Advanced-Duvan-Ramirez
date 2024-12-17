@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido a Nuestra Floristería</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body class="bg-gray-100">
+
+    <!-- Fragmento de Navegación -->
+    <div th:replace="navbar::nav"></div>
+
+    <!-- Contenido Principal -->
+    <div class="container mx-auto mt-10 p-5 bg-white shadow-md rounded-lg">
+        <h1 class="text-center text-4xl font-bold text-purple-900 mb-5">Bienvenido a Nuestra Floristería</h1>
+        <p class="text-center text-lg text-gray-700 mb-4">
+            Gracias por visitarnos. Ofrecemos una amplia variedad de flores y arreglos para todas las ocasiones.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://th.bing.com/th/id/OIP.wbIM2Ms6PEnKWMBPC7uk4AHaE8?rs=1&pid=ImgDetMain  " alt="Girasoles" class="w-full h-64 object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://c1.staticflickr.com/3/2746/4148501876_8bde9b5eb8_b.jpg" alt="Rosas" class="w-full h-64 object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://th.bing.com/th/id/R.a86f79374bd7edf9a2b182bc8640b5a3?rik=WxIV2eBAx3RWcg&riu=http%3a%2f%2facdlc.ucoz.es%2f_ph%2f1%2f447594489.jpg&ehk=bGVelV49%2f2LhfrSsolCXtaPwV3JQv64zB0%2bNAE5iLpA%3d&risl=&pid=ImgRaw&r=0" alt="Orquideas" class="w-full h-64 object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://image.freepik.com/free-photo/delightful-blooming-yellow-rose-bush_115919-126.jpg" alt="Imagen 3" class="w-full h-64  object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://img.freepik.com/fotos-premium/flores-colombianas-margarita-margarita-plantas_660803-1995.jpg" alt="Imagen 3" class="w-full h-64 object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://www.absolutviajes.com/wp-content/uploads/2009/08/flores.jpg" alt="Imagen 3" class="w-full h-64 object-cover">
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://th.bing.com/th/id/R.84a4c1220a970d179b9838d47a3f6e4e?rik=bUjICLo2rUCJgQ&riu=http%3a%2f%2fwww.fotoswiki.net%2fUploads%2ffotoswiki.net%2fImagenesGrandes%2fclaveles-rosas.jpg&ehk=Ax888CuxKijRZ0U5JyB6cYP1oPc53f1SODRGXKGDC80%3d&risl=&pid=ImgRaw&r=0" alt="Claveles" class="w-full h-64 object-contain object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://th.bing.com/th/id/OIP.B9OwfX10F_3EoayCcs6pdgHaFP?rs=1&pid=ImgDetMain" class="w-full h-64 object-contain object-cover">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+                <img src="https://w0.peakpx.com/wallpaper/346/965/HD-wallpaper-chrysanthemums-ultra-nature-flowers-autumn-garden-farm-plants-chrysanths-mums-chrysanthemums.jpg"  class="w-full h-64 object-contain object-cover">
+            </div>
+        </div>
+
+        <p class="text-center text-lg text-gray-700 mt-4">
+            ¡Esperamos que encuentres las flores perfectas para tu ocasión especial!
+        </p>
+    </div>
+
+</body>
+</html>

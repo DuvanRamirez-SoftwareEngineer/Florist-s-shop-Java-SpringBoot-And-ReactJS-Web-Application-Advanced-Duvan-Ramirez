@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Editar Flor</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+    <div class="max-w-5xl mx-auto mt-16">
+        <h1 class="text-3xl mx-auto text-center font-bold m-4">Editar Flor</h1>
+        <form
+            th:action="@{/editarflor/{id_flor}(id_flor=${flor.id_flor})}"
+            th:object="${flor}"
+            method="post"
+            class="bg-purple-100 max-w-3xl mx-auto ring-gray-100 p-8 rounded-lg"
+        >
+            <div class="mb-4 grid grid-cols-2 gap-4">
+                <input type="hidden" th:field="*{id_flor}" />
+                <div>
+                    <label
+                        for="nombre"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Nombre:</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        th:field="*{nombre}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="color"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Color:</label>
+                    <input
+                        type="text"
+                        id="color"
+                        th:field="*{color}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="variedad"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Variedad:</label>
+                    <input
+                        type="text"
+                        id="variedad"
+                        th:field="*{variedad}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="cantidad_disponible"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Cantidad Disponible:</label>
+                    <input
+                        type="number"
+                        id="cantidad_disponible"
+                        th:field="*{cantidad_disponible}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="precio_compra"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Precio de Compra:</label>
+                    <input
+                        type="number"
+                        step="0.01"
+                        id="precio_compra"
+                        th:field="*{precio_compra}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+                <div>
+                    <label
+                        for="precio_venta"
+                        class="block text-gray-700 text-sm font-bold mb-2"
+                    >Precio de Venta:</label>
+                    <input
+                        type="number"
+                        step="0.01"
+                        id="precio_venta"
+                        th:field="*{precio_venta}"
+                        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                    />
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <button
+                    type="submit"
+                    class="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-900 focus:outline-none focus:ring"
+                >
+                    Guardar
+                </button>
+                <a href="/inventario" class="bg-white text-gray-800 py-2 px-4 rounded-md border border-purple-500 hover:bg-purple-100 focus:outline-none focus:ring focus:ring-gray-200">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

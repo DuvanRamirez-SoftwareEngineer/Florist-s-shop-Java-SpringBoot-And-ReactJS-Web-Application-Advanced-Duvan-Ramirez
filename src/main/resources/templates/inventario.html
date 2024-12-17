@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventario</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Linea de codigo reutilizable menu de navegacion -->
+    <div th:replace="navbar :: nav"></div>
+    
+    <div class="max-w-5xl mx-auto mt-16">
+      <h1 class="text-3xl mx-auto text-center font-bold m-4">
+        Inventario de Flores
+      </h1>
+      <button
+        id="mostrarFormulario"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-2 rounded"
+      >
+        Crear Flor
+      </button>
+
+      <div
+        id="formularioCrearFlor"
+        class=" hidden items-center inset-0 fixed flex bg-white bg-opacity-90 "
+      >
+        <!-- Formulario -->
+        <form
+          class=" bg-purple-100  max-w-3xl mx-auto ring-gray-100 p-8 rounded-lg"
+          action="/guardarflor"
+          method="POST"
+        >
+          <h1 class="text-3xl mx-auto text-center font-bold m-4">Crear Flor</h1>
+          <div class="mb-4 grid grid-cols-2 gap-4">
+            <div>
+              <label
+                for="nombre"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Nombre:</label
+              >
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="color"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Color:</label
+              >
+              <input
+                type="text"
+                id="color"
+                name="color"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="variedad"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Variedad:</label
+              >
+              <input
+                type="text"
+                id="variedad"
+                name="variedad"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="cantidad"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Cantidad:</label
+              >
+              <input
+                type="number"
+                id="cantidad_disponible"
+                name="cantidad_disponible"
+                min="1"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="precio_compra"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Precio de Compra:</label
+              >
+              <input
+                type="number"
+                id="precio_compra"
+                name="precio_compra"
+                min="1"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="precio_venta"
+                class="block text-gray-700 text-sm font-bold mb-2"
+                >Precio de Venta:</label
+              >
+              <input
+                type="number"
+                id="precio_venta"
+                name="precio_venta"
+                min="1"
+                class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
+                required
+              />
+            </div>
+          </div>
+          <div class="mt-6 text-center">
+            <button
+              type="submit"
+              class="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-900 focus:outline-none focus:ring  "
+            >
+              Agregar
+            </button>
+            <button
+         
+              id="ocultarFormulario"
+              type="button"
+              class="bg-white text-gray-800 py-2 px-4 rounded-md border border-purple-500 hover:bg-purple-100 focus:outline-none focus:ring focus:ring-gray-200"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+
+      </div>
+
+      <table class="w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-purple-200">
+            <th class="border border-purple-300">Nombre</th>
+            <th class="border border-purple-300">Color</th>
+            <th class="border border-purple-300">Variedad</th>
+            <th class="border border-purple-300">Cantidad Disponible</th>
+            <th class="border border-purple-300">Precio de Compra</th>
+            <th class="border border-purple-300">Precio de Venta</th>
+            <th class="border border-purple-300">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Ejemplo de datos -->
+          <tr th:each="flor:${floresParaInventario}" class="bg-white">
+            <td
+              th:text="${flor.nombre}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              Rosa
+            </td>
+            <td
+              th:text="${flor.color}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              Rojas
+            </td>
+            <td
+              th:text="${flor.variedad}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              De jardin
+            </td>
+            <td
+              th:text="${flor.cantidad_disponible}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              50
+            </td>
+            <td
+              th:text="${flor.precio_compra}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              $8000
+            </td>
+            <td
+              th:text="${flor.precio_venta}"
+              class="border border-gray-300 py-2 px-4"
+            >
+              $1200
+            </td>
+            <td class="border border-gray-300 py-2 px-4 flex justify-between">
+              <a
+                th:href="@{/eliminarflor/{id_flor}(id_flor=${flor.id_flor})}"
+                class="text-red-600 cursor-pointer"
+              >
+                <i class="fas fa-trash"></i>
+              </a>
+
+              <a  th:href="@{/editarflor/{id_flor}(id_flor=${flor.id_flor})}"  class="text-purple-600 cursor-pointer gap-3">
+                <i class="fas fa-pencil-alt"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+
+      const mostrarFormularioBtn = document.getElementById("mostrarFormulario");
+     
+      const ocultarFormularioBtn = document.getElementById("ocultarFormulario")
+
+      mostrarFormularioBtn.addEventListener("click", () => {
+        formularioCrearFlor.classList.remove("hidden");
+      });
+
+      ocultarFormularioBtn.addEventListener("click",()=>{
+      formularioCrearFlor.classList.add("hidden")
+      })
+
+
+    </script>
+  </body>
+</html>
